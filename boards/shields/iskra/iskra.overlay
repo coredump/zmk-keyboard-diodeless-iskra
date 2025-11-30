@@ -1,0 +1,47 @@
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+	chosen {
+		zmk,physical-layout = &physical_layout0;
+		kscan = <&kscan0>;
+	};
+};
+
+/ {
+	kscan0: kscan0 {
+		compatible = "zmk,kscan-gpio-direct";
+		wakeup-source;
+		input-gpios
+		= <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+	;
+
+	};
+};
+
+/ {
+	default_transform: keymap_transform0 {
+		compatible = "zmk,matrix-transform";
+		columns = <10>;
+		rows = <1>;
+		map = <
+					  RC(0,0) RC(0,1) RC(0,2)
+					  RC(0,3) RC(0,4) RC(0,5)
+					  RC(0,6) RC(0,7) RC(0,8) RC(0,9)
+			  >;
+	};
+};
+
+/ {
+	physical_layout0: physical_layout_0 {
+	compatible = "zmk,physical-layout";
+		display-name = "Default Layout";
+		transform = <&default_transform>;
+	};
+};

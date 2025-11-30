@@ -1,0 +1,6 @@
+if SHIELD_ISKRA
+
+config ZMK_KEYBOARD_NAME
+    default "iskra numpad"
+
+endif
