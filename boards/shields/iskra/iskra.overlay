@@ -1,16 +1,10 @@
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <physical_layouts.dtsi>
 
 / {
-	chosen {
-		zmk,physical-layout = &physical_layout0;
-		kscan = <&kscan0>;
-	};
-};
 
-/ {
 	kscan0: kscan0 {
 		compatible = "zmk,kscan-gpio-direct";
-		wakeup-source;
 		input-gpios
 		= <&pro_micro 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 		, <&pro_micro 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
@@ -20,12 +14,12 @@
 		, <&pro_micro 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 		, <&pro_micro 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 		, <&pro_micro 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 8 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+		, <&pro_micro 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
 	;
 
 	};
-};
 
-/ {
 	default_transform: keymap_transform0 {
 		compatible = "zmk,matrix-transform";
 		columns = <10>;
@@ -36,12 +30,27 @@
 					  RC(0,6) RC(0,7) RC(0,8) RC(0,9)
 			  >;
 	};
-};
 
-/ {
 	physical_layout0: physical_layout_0 {
-	compatible = "zmk,physical-layout";
+		kscan = <&kscan0>;
+		compatible = "zmk,physical-layout";
 		display-name = "Default Layout";
 		transform = <&default_transform>;
+		keys
+		= <&key_physical_attrs 100 100    0    0 0 0 0>
+		, <&key_physical_attrs 100 100  100    0 0 0 1>
+		, <&key_physical_attrs 100 100  200    0 0 0 2>
+		, <&key_physical_attrs 100 100    0  100 0 1 0>
+		, <&key_physical_attrs 100 100  100  100 0 1 1>
+		, <&key_physical_attrs 100 100  200  100 0 1 2>
+		, <&key_physical_attrs 100 100    0  200 0 2 0>
+		, <&key_physical_attrs 100 100  100  200 0 2 1>
+		, <&key_physical_attrs 100 100  200  200 0 2 2>
+		, <&key_physical_attrs 100 100  300  200 0 2 3>;
 	};
+
+	chosen {
+		zmk,physical-layout = &physical_layout0;
+	};
+
 };
